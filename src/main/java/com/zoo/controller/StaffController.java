@@ -9,6 +9,7 @@ import com.zoo.service.RESTfulService;
 public class StaffController {
     static String url = "http://127.0.0.1:8080";
 
+    // get all staff
     public static String staffs(){
         try {
             JSONObject json = new JSONObject(RESTfulService.doGet(url+"/staff"));
@@ -19,16 +20,17 @@ public class StaffController {
             Staff staff = new Staff();
 
             for (int i = 0; i < data.length(); i++) {
-                // 取得陣列中的每個 JSON 物件
+                // get json object
                 JSONObject jsonObject = data.getJSONObject(i);
     
-                // 取得 JSON 物件中的值
+                // get json value
                 staff.id_staff = jsonObject.getInt("id_staff");
                 staff.id_zoo = jsonObject.getInt("id_zoo");
                 staff.id_staff_type = jsonObject.getInt("id_staff_type");
                 staff.name = jsonObject.getString("name");
                 staff.salary = jsonObject.getInt("salary");
                 
+                // result
                 result += "\n";
                 result += "\n" + "Staff ID: " + staff.id_staff;
                 result += "\n" + "Zoo ID: " + staff.id_zoo;
@@ -43,8 +45,10 @@ public class StaffController {
         }
     }
 
+    // add staff
     public static String staffadd(Staff staff){
         try {
+            // json data
             JSONObject json = new JSONObject();
             json.put("id_zoo", staff.id_zoo);
             json.put("name", staff.name);
@@ -58,8 +62,10 @@ public class StaffController {
         }
     }
 
+    // update staff by id
     public static String staffupg(Staff staff){
         try {
+            // json data
             JSONObject json = new JSONObject();
             json.put("id_staff", staff.id_staff);
             json.put("id_zoo", staff.id_zoo);
@@ -74,6 +80,8 @@ public class StaffController {
         }
     }
 
+
+    // delete staff by id
     public static String staffdel(int id){
         try {
             RESTfulService.doDelete(url+"/staff/delete/"+id);

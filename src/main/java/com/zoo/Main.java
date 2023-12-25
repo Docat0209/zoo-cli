@@ -35,7 +35,7 @@ public class Main {
     System.out.println("Welcome to Emonimal Zoo Management System v1.0.0.");
     System.out.println("Type \"help\" for more information.");
 
-    // type exit
+    // is exit
     boolean exit = false;
 
     // loop
@@ -52,17 +52,23 @@ public class Main {
       // comand switch
       switch (command) {
         case "help":
+          // output
           System.out.println(help());
           break;
         case "anis":
+          // output
           System.out.println(AnimalController.anis());
           break;
         case "anibyenc":
-          System.out.print("Target Enclouser ID");
+          // input
+          System.out.print("Target Enclouser ID: ");
           id = scanner.nextInt();
+
+          // output
           System.out.println(AnimalController.anibyenc(id));
           break;
         case "aniadd":
+          // input
           System.out.print("Animal type ID: ");
           animal.id_animal_type = scanner.nextInt();
           System.out.print("Zoo ID: ");
@@ -79,9 +85,12 @@ public class Main {
           animal.nofication = scanner.next();
           System.out.print("Img url: ");
           animal.img_url = scanner.next();
+
+          // output
           System.out.println(AnimalController.aniadd(animal));
           break;
         case "aniupg":
+          // input
           System.out.print("Target Animal ID: ");
           animal.id_animal = scanner.nextInt();
           System.out.print("Animal type ID: ");
@@ -100,26 +109,36 @@ public class Main {
           animal.nofication = scanner.next();
           System.out.print("Img url: ");
           animal.img_url = scanner.next();
+
+          // output
           System.out.println(AnimalController.aniupg(animal));
           break;
         case "anidel":
-          System.out.print("Target Animal ID");
+          // input
+          System.out.print("Target Animal ID: ");
           id = scanner.nextInt();
+
+          // output
           System.out.println(AnimalController.anidel(id));
           break;
         case "encs":
+          // output
           System.out.println(EnclosureController.encs());
           break;
         case "encadd":
+          // input
           System.out.print("Zoo ID: ");
           enclosure.id_zoo = scanner.nextInt();
           System.out.print("Name: ");
           enclosure.name = scanner.next();
           System.out.print("Introduce: ");
           enclosure.introduce = scanner.next();
+
+          // output
           System.out.println(EnclosureController.encadd(enclosure));
           break;
         case "encupg":
+          // input
           System.out.print("Target Enclosure ID: ");
           enclosure.id_enclosure = scanner.nextInt();
           System.out.print("Zoo ID: ");
@@ -128,17 +147,24 @@ public class Main {
           enclosure.name = scanner.next();
           System.out.print("Introduce: ");
           enclosure.introduce = scanner.next();
+
+          // output
           System.out.println(EnclosureController.encupg(enclosure));
           break;
         case "encdel":
-          System.out.print("Target Enclosure ID");
+          // input
+          System.out.print("Target Enclosure ID: ");
           id = scanner.nextInt();
+
+          // output
           System.out.println(EnclosureController.encdel(id));
           break;
         case "staffs":
+          // output
           System.out.println(StaffController.staffs());
           break;
         case "staffadd":
+          // input
           System.out.print("Zoo ID: ");
           staff.id_zoo = scanner.nextInt();
           System.out.print("Staff type ID: ");
@@ -147,9 +173,12 @@ public class Main {
           staff.name = scanner.next();
           System.out.print("Salary: ");
           staff.salary = scanner.nextInt();
+
+          // output
           System.out.println(StaffController.staffadd(staff));
           break;
         case "staffupg":
+          // input
           System.out.print("Target Staff ID: ");
           staff.id_staff = scanner.nextInt();
           System.out.print("Zoo ID: ");
@@ -160,19 +189,28 @@ public class Main {
           staff.name = scanner.next();
           System.out.print("Salary: ");
           staff.salary = scanner.nextInt();
+
+          // output
           System.out.println(StaffController.staffupg(staff));
           break;
         case "staffdel":
-          System.out.print("Target Staff ID");
+          // input
+          System.out.print("Target Staff ID: ");
           id = scanner.nextInt();
+
+          // output
           System.out.println(StaffController.staffdel(id));
           break;
         case "fedbyani":
-          System.out.print("Target Animal ID");
+          // input
+          System.out.print("Target Animal ID: ");
           id = scanner.nextInt();
+
+          // output
           System.out.println(FeedLogController.fedbyani(id));
           break;
         case "fedadd":
+          // input
           System.out.print("Food ID: ");
           feedLog.id_food = scanner.nextInt();
           System.out.print("Animal ID: ");
@@ -181,12 +219,16 @@ public class Main {
           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
           String formattedDateTime = now.format(formatter);
           feedLog.time = formattedDateTime;
+
+          // output
           System.out.println(FeedLogController.fedadd(feedLog));
           break;
         case "exit":
+          //exit
           exit = true;
           break;
         default:
+          // unknow command
           System.out.println("Uncaught ReferenceError: "+command+" is not defined");
           break;
       }

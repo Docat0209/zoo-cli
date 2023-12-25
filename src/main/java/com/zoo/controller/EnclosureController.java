@@ -9,6 +9,7 @@ import com.zoo.service.RESTfulService;
 public class EnclosureController {
     static String url = "http://127.0.0.1:8080";
 
+    // get all enclosure
     public static String encs(){
         try {
             JSONObject json = new JSONObject(RESTfulService.doGet(url+"/enclosure"));
@@ -19,15 +20,16 @@ public class EnclosureController {
             Enclosure enclosure = new Enclosure();
 
             for (int i = 0; i < data.length(); i++) {
-                // 取得陣列中的每個 JSON 物件
+                // get json object
                 JSONObject jsonObject = data.getJSONObject(i);
     
-                // 取得 JSON 物件中的值
+                // get json value
                 enclosure.id_enclosure = jsonObject.getInt("id_enclosure");
                 enclosure.id_zoo = jsonObject.getInt("id_zoo");
                 enclosure.name = jsonObject.getString("name");
                 enclosure.introduce = jsonObject.getString("introduce");
                 
+                // result
                 result += "\n";
                 result += "\n" + "Enclosure ID: " + enclosure.id_enclosure;
                 result += "\n" + "Zoo ID: " + enclosure.id_zoo;
@@ -41,8 +43,10 @@ public class EnclosureController {
         }
     }
 
+    // add enclosure
     public static String encadd(Enclosure enclosure){
         try {
+            // json data
             JSONObject json = new JSONObject();
             json.put("id_zoo", enclosure.id_zoo);
             json.put("name", enclosure.name);
@@ -55,8 +59,10 @@ public class EnclosureController {
         }
     }
 
+    // upgrade enclosure
     public static String encupg(Enclosure enclosure){
         try {
+            // json data
             JSONObject json = new JSONObject();
             json.put("id_enclosure", enclosure.id_enclosure);
             json.put("id_zoo", enclosure.id_zoo);
@@ -70,6 +76,7 @@ public class EnclosureController {
         }
     }
 
+    // delete enclosure
     public static String encdel(int id){
         try {
             RESTfulService.doDelete(url+"/enclosure/delete/"+id);

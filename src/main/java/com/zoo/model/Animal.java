@@ -1,6 +1,7 @@
 package com.zoo.model;
 
 public class Animal {
+    // animal
     public int id_animal;
     public int id_animal_type;
     public int id_zoo;

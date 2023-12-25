@@ -10,6 +10,7 @@ public class AnimalController {
 
     static String url = "http://127.0.0.1:8080";
 
+    // get all animal
     public static String anis(){
         try {
             JSONObject json = new JSONObject(RESTfulService.doGet(url+"/animal"));
@@ -20,10 +21,10 @@ public class AnimalController {
             Animal animal = new Animal();
 
             for (int i = 0; i < data.length(); i++) {
-                // 取得陣列中的每個 JSON 物件
+                // get json object
                 JSONObject jsonObject = data.getJSONObject(i);
     
-                // 取得 JSON 物件中的值
+                // get json value
                 animal.id_animal = jsonObject.getInt("id_animal");
                 animal.id_animal_type = jsonObject.getInt("id_animal_type");
                 animal.id_zoo = jsonObject.getInt("id_zoo");
@@ -34,6 +35,7 @@ public class AnimalController {
                 animal.nofication = jsonObject.getString("nofication");
                 animal.img_url = jsonObject.getString("img_url");
                 
+                // result
                 result += "\n";
                 result += "\n" + "Animal ID: " + animal.id_animal;
                 result += "\n" + "Animal Type ID: " + animal.id_animal_type;
@@ -52,6 +54,7 @@ public class AnimalController {
         }
     }
 
+    // get animal by enclosure id
     public static String anibyenc(int id){
         try {
             JSONObject json = new JSONObject(RESTfulService.doGet(url+"/animal/enclosure/"+id));
@@ -62,10 +65,10 @@ public class AnimalController {
             Animal animal = new Animal();
 
             for (int i = 0; i < data.length(); i++) {
-                // 取得陣列中的每個 JSON 物件
+                // get json object
                 JSONObject jsonObject = data.getJSONObject(i);
     
-                // 取得 JSON 物件中的值
+                // get json value
                 animal.id_animal = jsonObject.getInt("id_animal");
                 animal.id_animal_type = jsonObject.getInt("id_animal_type");
                 animal.id_zoo = jsonObject.getInt("id_zoo");
@@ -76,6 +79,7 @@ public class AnimalController {
                 animal.nofication = jsonObject.getString("nofication");
                 animal.img_url = jsonObject.getString("img_url");
                 
+                // result
                 result += "\n";
                 result += "\n" + "Animal ID: " + animal.id_animal;
                 result += "\n" + "Animal Type ID: " + animal.id_animal_type;
@@ -94,8 +98,10 @@ public class AnimalController {
         }
     }
 
+    // add animal
     public static String aniadd(Animal animal){
         try {
+            // json data
             JSONObject json = new JSONObject();
             json.put("id_animal_type", animal.id_animal_type);
             json.put("id_zoo", animal.id_zoo);
@@ -113,8 +119,10 @@ public class AnimalController {
         }
     }
 
+    // upgrade animal by id
     public static String aniupg(Animal animal){
         try {
+            // json data
             JSONObject json = new JSONObject();
             json.put("id_animal", animal.id_animal);
             json.put("id_animal_type", animal.id_animal_type);
@@ -133,6 +141,7 @@ public class AnimalController {
         }
     }
 
+    // delete animal by id
     public static String anidel(int id){
         try {
             RESTfulService.doDelete(url+"/animal/delete/"+id);
